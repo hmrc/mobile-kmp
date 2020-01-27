@@ -25,18 +25,18 @@ Each release tag includes a Carthage binary dependency specification. To use the
 ``` 
 * Add a JSON file that holds your Carthage binary specifications.
 ```shell script
- $ touch Carthage-Binaries/HelpToSaveKalculator.json
+ $ touch Carthage-Binaries/MobileKmp.json
 ```
 * Point to the latest release in your JSON file.
 ```json
     {
-      "0.3.7": "https://github.com/hmrc/tax-kalculator/releases/download/0.3.7/HelpToSaveKalculator.framework.zip"
+      "0.3.7": "https://github.com/hmrc/tax-kalculator/releases/download/0.3.7/MobileKmp.framework.zip"
     }
 ```
 * List the dependency in your Cartfile
 ```shell script
     ...
-    binary "Carthage-Binaries/HelpToSaveKalculator.json" == 0.3.7
+    binary "Carthage-Binaries/MobileKmp.json" == 0.3.7
     ...
 ```
 * Update your Carthage dependencies as per your requirements.
