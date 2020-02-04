@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.bands
+package uk.gov.hmrc.taxcalculator.model.bands
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import uk.gov.hmrc.calculator.exception.InvalidTaxYearException
+import uk.gov.hmrc.calculator.model.bands.EmployerNIBands
 
 class EmployerNIBandsTests {
 
@@ -26,8 +27,7 @@ class EmployerNIBandsTests {
     fun invalidYear() {
         val exception = assertFailsWith<InvalidTaxYearException> {
             EmployerNIBands(
-                2017
-            )
+                2017)
         }
         assertEquals(exception.message, "2017")
     }

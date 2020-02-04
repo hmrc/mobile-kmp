@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils
+package uk.gov.hmrc.taxcalculator.utils
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -27,6 +27,8 @@ import uk.gov.hmrc.calculator.model.PayPeriod.HOURLY
 import uk.gov.hmrc.calculator.model.PayPeriod.MONTHLY
 import uk.gov.hmrc.calculator.model.PayPeriod.WEEKLY
 import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.calculator.utils.convertAmountFromYearlyToPayPeriod
+import uk.gov.hmrc.calculator.utils.convertWageToYearly
 
 class DoublePayPeriodTest {
 
@@ -82,18 +84,21 @@ class DoublePayPeriodTest {
             10.0.convertWageToYearly(HOURLY, 169.0)
         }
     }
+
     @Test
     fun `Convert to DAILY invalid when days per week too high`() {
         assertFailsWith<InvalidDaysException> {
             50.0.convertWageToYearly(DAILY, 8.0)
         }
     }
+
     @Test
     fun `Convert to DAILY invalid when days per week is 0`() {
         assertFailsWith<InvalidDaysException> {
             50.0.convertWageToYearly(DAILY, 0.0)
         }
     }
+
     @Test
     fun `Convert to DAILY invalid when days per week is null`() {
         assertFailsWith<InvalidDaysException> {

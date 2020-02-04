@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.taxcode
+package uk.gov.hmrc.taxcalculator.utils.taxcode
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -32,6 +32,7 @@ import uk.gov.hmrc.calculator.model.taxcodes.WelshEmergencyCode
 import uk.gov.hmrc.calculator.model.taxcodes.WelshMCode
 import uk.gov.hmrc.calculator.model.taxcodes.WelshNCode
 import uk.gov.hmrc.calculator.model.taxcodes.WelshTaxCode
+import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
 
 class StringWelshTaxCodeTests {
 

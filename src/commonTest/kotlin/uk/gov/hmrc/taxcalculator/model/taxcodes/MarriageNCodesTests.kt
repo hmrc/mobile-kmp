@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.taxcodes
+package uk.gov.hmrc.taxcalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.Calculator
+import uk.gov.hmrc.calculator.TaxCalculator
 import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
 
 class MarriageNCodesTests {
 
     @Test
     fun `Wales N Code 20k`() {
-        val calculator = Calculator(
-            "C1050N",
-            10000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "C1050N", 10000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(0.0, calculator.yearly.taxToPay)
         assertEquals(188.78400000000002, calculator.yearly.employersNI)
         assertEquals(164.16, calculator.yearly.employeesNI)
@@ -37,12 +33,8 @@ class MarriageNCodesTests {
 
     @Test
     fun `Scotland N Code 20k`() {
-        val calculator = Calculator(
-            "S1050N",
-            10000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "S1050N", 10000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(0.0, calculator.yearly.taxToPay)
         assertEquals(188.78400000000002, calculator.yearly.employersNI)
         assertEquals(164.16, calculator.yearly.employeesNI)
@@ -50,12 +42,8 @@ class MarriageNCodesTests {
 
     @Test
     fun `England N Code 20k`() {
-        val calculator = Calculator(
-            "1050N",
-            10000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "1050N", 10000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(0.0, calculator.yearly.taxToPay)
         assertEquals(188.78400000000002, calculator.yearly.employersNI)
         assertEquals(164.16, calculator.yearly.employeesNI)

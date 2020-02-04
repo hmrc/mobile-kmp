@@ -28,54 +28,54 @@ class CalculatorTest {
     fun `Gives list of 48 months with breakdown`() {
         assertEquals(
             MonthlyBreakdown(monthNumber = 1, balance = 50, secondYearBonus = 25.0, fourthYearBonus = 0.0),
-            Calculator.run(regularPayment = 50).monthlyBreakdown[0])
-        assertEquals(25.0, Calculator.run(regularPayment = 50).monthlyBreakdown[0].totalBonusToDate)
+            HtSCalculator.run(regularPayment = 50).monthlyBreakdown[0])
+        assertEquals(25.0, HtSCalculator.run(regularPayment = 50).monthlyBreakdown[0].totalBonusToDate)
 
         assertEquals(
             MonthlyBreakdown(monthNumber = 2, balance = 100, secondYearBonus = 50.0, fourthYearBonus = 0.0),
-            Calculator.run(regularPayment = 50).monthlyBreakdown[1])
-        assertEquals(50.0, Calculator.run(regularPayment = 50).monthlyBreakdown[1].totalBonusToDate)
+            HtSCalculator.run(regularPayment = 50).monthlyBreakdown[1])
+        assertEquals(50.0, HtSCalculator.run(regularPayment = 50).monthlyBreakdown[1].totalBonusToDate)
 
         assertEquals(
             MonthlyBreakdown(monthNumber = 3, balance = 150, secondYearBonus = 75.0, fourthYearBonus = 0.0),
-            Calculator.run(regularPayment = 50).monthlyBreakdown[2])
-        assertEquals(50.0, Calculator.run(regularPayment = 50).monthlyBreakdown[1].totalBonusToDate)
+            HtSCalculator.run(regularPayment = 50).monthlyBreakdown[2])
+        assertEquals(50.0, HtSCalculator.run(regularPayment = 50).monthlyBreakdown[1].totalBonusToDate)
 
         assertEquals(
             MonthlyBreakdown(monthNumber = 24, balance = 1200, secondYearBonus = 600.0, fourthYearBonus = 0.0),
-            Calculator.run(regularPayment = 50).monthlyBreakdown[23])
-        assertEquals(600.0, Calculator.run(regularPayment = 50).monthlyBreakdown[23].totalBonusToDate)
+            HtSCalculator.run(regularPayment = 50).monthlyBreakdown[23])
+        assertEquals(600.0, HtSCalculator.run(regularPayment = 50).monthlyBreakdown[23].totalBonusToDate)
 
         assertEquals(
             MonthlyBreakdown(
                 monthNumber = 25, balance = 1250, secondYearBonus = 600.0, fourthYearBonus = 25.0),
-            Calculator.run(regularPayment = 50).monthlyBreakdown[24])
-        assertEquals(625.0, Calculator.run(regularPayment = 50).monthlyBreakdown[24].totalBonusToDate)
+            HtSCalculator.run(regularPayment = 50).monthlyBreakdown[24])
+        assertEquals(625.0, HtSCalculator.run(regularPayment = 50).monthlyBreakdown[24].totalBonusToDate)
 
         assertEquals(
             MonthlyBreakdown(
                 monthNumber = 48, balance = 2400, secondYearBonus = 600.0, fourthYearBonus = 600.0),
-            Calculator.run(regularPayment = 50).monthlyBreakdown[47])
-        assertEquals(1200.0, Calculator.run(regularPayment = 50).monthlyBreakdown[47].totalBonusToDate)
+            HtSCalculator.run(regularPayment = 50).monthlyBreakdown[47])
+        assertEquals(1200.0, HtSCalculator.run(regularPayment = 50).monthlyBreakdown[47].totalBonusToDate)
     }
 
     @Test
     fun `Throw Exception when regular payment is below 1`() {
         assertFailsWith<InvalidRegularPaymentException> {
-            Calculator.run(regularPayment = 0)
+            HtSCalculator.run(regularPayment = 0)
         }
     }
 
     @Test
     fun `Throw Exception when regular payment is above 50`() {
         assertFailsWith<InvalidRegularPaymentException> {
-            Calculator.run(regularPayment = 51)
+            HtSCalculator.run(regularPayment = 51)
         }
     }
 
     @Test
     fun `Month breakdown if they have only saved in the first 2 months`() {
-        val calculator = Calculator.run(
+        val calculator = HtSCalculator.run(
             regularPayment = 50,
             currentBalance = 100,
             currentFirstPeriodBonus = 50.0,
@@ -90,7 +90,7 @@ class CalculatorTest {
 
     @Test
     fun `Month breakdown if they have not saved in the first 2 months`() {
-        val calculator = Calculator.run(
+        val calculator = HtSCalculator.run(
             regularPayment = 50,
             currentBalance = 0,
             currentFirstPeriodBonus = 0.0,
@@ -105,7 +105,7 @@ class CalculatorTest {
 
     @Test
     fun `Month breakdown if they have not saved in the first 24 months`() {
-        val calculator = Calculator.run(
+        val calculator = HtSCalculator.run(
             regularPayment = 50,
             currentBalance = 0,
             currentFirstPeriodBonus = 0.0,
