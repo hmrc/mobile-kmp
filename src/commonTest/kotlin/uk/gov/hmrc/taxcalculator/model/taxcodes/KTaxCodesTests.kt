@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.taxcodes
+package uk.gov.hmrc.taxcalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.Calculator
+import uk.gov.hmrc.calculator.TaxCalculator
 import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
 
 class KTaxCodesTests {
 
     @Test
     fun `CK100 Wales 100K`() {
-        val calculator = Calculator(
-            "CK100",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "CK100", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(32905.4, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)
@@ -37,12 +33,8 @@ class KTaxCodesTests {
 
     @Test
     fun `K100 England 100K`() {
-        val calculator = Calculator(
-            "K100",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "K100", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(32905.4, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)
@@ -50,12 +42,8 @@ class KTaxCodesTests {
 
     @Test
     fun `SK100 Scotland 100K`() {
-        val calculator = Calculator(
-            "SK100",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "SK100", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(35084.74, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)

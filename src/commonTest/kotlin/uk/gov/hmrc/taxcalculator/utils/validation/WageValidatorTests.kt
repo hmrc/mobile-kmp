@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.validation
+package uk.gov.hmrc.taxcalculator.utils.validation
 
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import uk.gov.hmrc.calculator.utils.validation.WageValidator
 
 class WageValidatorTests {
     @Test

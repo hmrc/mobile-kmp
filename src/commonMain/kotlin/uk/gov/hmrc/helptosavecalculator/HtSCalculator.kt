@@ -23,7 +23,7 @@ import uk.gov.hmrc.helptosavecalculator.models.MonthlyBreakdown
 import uk.gov.hmrc.helptosavecalculator.utils.monthsSince
 import uk.gov.hmrc.helptosavecalculator.validation.RegularPaymentValidators
 
-object Calculator : HtSSchemeConfig() {
+object HtSCalculator : HtSSchemeConfig() {
 
     fun run(regularPayment: Int): CalculatorResponse {
         return calculate(regularPayment)

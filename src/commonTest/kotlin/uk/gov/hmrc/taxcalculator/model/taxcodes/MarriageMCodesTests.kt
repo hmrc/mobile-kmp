@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.taxcodes
+package uk.gov.hmrc.taxcalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.Calculator
+import uk.gov.hmrc.calculator.TaxCalculator
 import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
 
 class MarriageMCodesTests {
 
     @Test
     fun `Wales M Code 20k`() {
-        val calculator = Calculator(
-            "C1450M",
-            20000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "C1450M", 20000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(1098.20, calculator.yearly.taxToPay)
         assertEquals(1568.784, calculator.yearly.employersNI)
         assertEquals(1364.1599999999999, calculator.yearly.employeesNI)
@@ -37,12 +33,8 @@ class MarriageMCodesTests {
 
     @Test
     fun `Scotland M Code 20k`() {
-        val calculator = Calculator(
-            "S1450M",
-            20000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "S1450M", 20000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(1077.8000000000002, calculator.yearly.taxToPay)
         assertEquals(1568.784, calculator.yearly.employersNI)
         assertEquals(1364.1599999999999, calculator.yearly.employeesNI)
@@ -50,12 +42,8 @@ class MarriageMCodesTests {
 
     @Test
     fun `England M Code 20k`() {
-        val calculator = Calculator(
-            "1450M",
-            20000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "1450M", 20000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(1098.20, calculator.yearly.taxToPay)
         assertEquals(1568.784, calculator.yearly.employersNI)
         assertEquals(1364.1599999999999, calculator.yearly.employeesNI)

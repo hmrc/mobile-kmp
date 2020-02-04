@@ -13,22 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.taxcodes
+package uk.gov.hmrc.taxcalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.Calculator
+import uk.gov.hmrc.calculator.TaxCalculator
 import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
 
 class BRCodeTests {
     @Test
     fun `BR England 100K`() {
-        val calculator = Calculator(
-            "BR",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "BR", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(20000.0, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)
@@ -36,12 +32,8 @@ class BRCodeTests {
 
     @Test
     fun `BR Wales 100K`() {
-        val calculator = Calculator(
-            "CBR",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "CBR", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(20000.0, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)
@@ -49,12 +41,8 @@ class BRCodeTests {
 
     @Test
     fun `BR Scotland 100K`() {
-        val calculator = Calculator(
-            "SBR",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "SBR", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(20000.0, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)

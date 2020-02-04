@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.validation
+package uk.gov.hmrc.taxcalculator.utils.validation
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import uk.gov.hmrc.calculator.model.ValidationError
+import uk.gov.hmrc.calculator.utils.validation.TaxCodeValidator
 
 class TaxCodeValidatorTests {
     @Test
@@ -44,6 +45,7 @@ class TaxCodeValidatorTests {
         assertFalse(TaxCodeValidator.isValidTaxCode("OO9999").isValid)
         assertEquals(ValidationError.WrongTaxCodePrefix, TaxCodeValidator.isValidTaxCode("OO9999").errorType)
     }
+
     @Test
     fun `Validate invalid tax code Suffix`() {
         assertFalse(TaxCodeValidator.isValidTaxCode("9999R").isValid)

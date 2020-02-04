@@ -13,23 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.taxcodes
+package uk.gov.hmrc.taxcalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.Calculator
+import uk.gov.hmrc.calculator.TaxCalculator
 import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
 
 class D1TaxCodesTests {
 
     @Test
     fun `D1 Wales 100K`() {
-        val calculator = Calculator(
-            "CD1",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "CD1", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(45000.00, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)
@@ -37,12 +33,8 @@ class D1TaxCodesTests {
 
     @Test
     fun `D1 England 100K`() {
-        val calculator = Calculator(
-            "D1",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "D1", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(45000.00, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)
@@ -50,12 +42,8 @@ class D1TaxCodesTests {
 
     @Test
     fun `D1 Scotland 100K`() {
-        val calculator = Calculator(
-            "SD1",
-            100000.0,
-            payPeriod = YEARLY,
-            taxYear = 2019
-        ).run()
+        val calculator = TaxCalculator(
+            "SD1", 100000.0, payPeriod = YEARLY, taxYear = 2019).run()
         assertEquals(41000.00, calculator.yearly.taxToPay)
         assertEquals(12608.784000000001, calculator.yearly.employersNI)
         assertEquals(5964.16, calculator.yearly.employeesNI)

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.taxcode
+package uk.gov.hmrc.taxcalculator.utils.taxcode
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -22,6 +22,7 @@ import kotlin.test.assertTrue
 import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
 import uk.gov.hmrc.calculator.model.Country.NONE
 import uk.gov.hmrc.calculator.model.taxcodes.NoTaxTaxCode
+import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
 
 class StringOtherTaxCodeTests {
 

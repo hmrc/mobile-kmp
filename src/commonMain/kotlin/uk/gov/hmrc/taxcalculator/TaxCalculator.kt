@@ -53,7 +53,7 @@ import uk.gov.hmrc.calculator.utils.convertWageToYearly
 import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
 import uk.gov.hmrc.calculator.utils.validation.WageValidator
 
-class Calculator @JvmOverloads constructor(
+class TaxCalculator @JvmOverloads constructor(
     private val taxCode: String,
     private val wages: Double,
     private val payPeriod: PayPeriod,

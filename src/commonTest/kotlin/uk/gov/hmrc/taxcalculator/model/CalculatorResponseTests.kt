@@ -13,13 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model
+package uk.gov.hmrc.taxcalculator.model
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.Calculator
+import uk.gov.hmrc.calculator.TaxCalculator
+import uk.gov.hmrc.calculator.model.BandBreakdown
+import uk.gov.hmrc.calculator.model.CalculatorResponsePayPeriod
 import uk.gov.hmrc.calculator.model.Country.ENGLAND
 import uk.gov.hmrc.calculator.model.Country.SCOTLAND
+import uk.gov.hmrc.calculator.model.PayPeriod
 import uk.gov.hmrc.calculator.model.PayPeriod.MONTHLY
 import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
 
@@ -34,11 +37,8 @@ class CalculatorResponseTests {
             employersNI = 300.0,
             wages = 1000.0,
             taxBreakdownForPayPeriod = listOf(
-                BandBreakdown(0.0, 0.0),
-                BandBreakdown(0.2, 2000.0)
-            ),
-            taxFree = 12509.0
-        )
+                BandBreakdown(0.0, 0.0), BandBreakdown(0.2, 2000.0)),
+            taxFree = 12509.0)
 
         assertEquals(100.0, response.taxToPay)
         assertEquals(200.0, response.employeesNI)
@@ -47,10 +47,7 @@ class CalculatorResponseTests {
         assertEquals(700.0, response.takeHome)
         assertEquals(
             listOf(
-                BandBreakdown(0.0, 0.0),
-                BandBreakdown(0.2, 2000.0)
-            ), response.taxBreakdown
-        )
+                BandBreakdown(0.0, 0.0), BandBreakdown(0.2, 2000.0)), response.taxBreakdown)
         assertEquals(12509.0, response.taxFree)
     }
 
@@ -58,7 +55,7 @@ class CalculatorResponseTests {
     fun `Check Full Calculator Response Small Amount`() {
         val taxCode = "1250L"
         val wages = 2000.00
-        val response = Calculator(taxCode, wages, payPeriod = MONTHLY).run()
+        val response = TaxCalculator(taxCode, wages, payPeriod = MONTHLY).run()
 
         assertEquals(ENGLAND, response.country)
         assertEquals(false, response.isKCode)
@@ -77,11 +74,7 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 2298.2000000000003
-                )
-            ), response.yearly.taxBreakdown
-        )
+                    percentage = 0.2, amount = 2298.2000000000003)), response.yearly.taxBreakdown)
 
         assertEquals(191.51666666666668, response.monthly.taxToPay)
         assertEquals(153.67999999999998, response.monthly.employeesNI)
@@ -93,11 +86,7 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 191.51666666666668
-                )
-            ), response.monthly.taxBreakdown
-        )
+                    percentage = 0.2, amount = 191.51666666666668)), response.monthly.taxBreakdown)
 
         assertEquals(176.7846153846154, response.fourWeekly.taxToPay)
         assertEquals(141.85846153846154, response.fourWeekly.employeesNI)
@@ -108,11 +97,7 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 176.7846153846154
-                )
-            ), response.fourWeekly.taxBreakdown
-        )
+                    percentage = 0.2, amount = 176.7846153846154)), response.fourWeekly.taxBreakdown)
 
         assertEquals(44.19615384615385, response.weekly.taxToPay)
         assertEquals(35.464615384615385, response.weekly.employeesNI)
@@ -123,18 +108,14 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 44.19615384615385
-                )
-            ), response.weekly.taxBreakdown
-        )
+                    percentage = 0.2, amount = 44.19615384615385)), response.weekly.taxBreakdown)
     }
 
     @Test
     fun `Check Full Calculator Response Large Amount`() {
         val taxCode = "250T"
         val wages = 10000.00
-        val response = Calculator(taxCode, wages, payPeriod = MONTHLY).run()
+        val response = TaxCalculator(taxCode, wages, payPeriod = MONTHLY).run()
 
         assertEquals(ENGLAND, response.country)
         assertEquals(false, response.isKCode)
@@ -153,12 +134,8 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 7498.200000000001
-                ),
-                BandBreakdown(percentage = 0.4, amount = 32000.00)
-            ), response.yearly.taxBreakdown
-        )
+                    percentage = 0.2, amount = 7498.200000000001), BandBreakdown(percentage = 0.4, amount = 32000.00)),
+            response.yearly.taxBreakdown)
 
         assertEquals(3291.5166666666664, response.monthly.taxToPay)
         assertEquals(530.3466666666667, response.monthly.employeesNI)
@@ -169,13 +146,8 @@ class CalculatorResponseTests {
         assertEquals(10000.0, response.monthly.wages)
         assertEquals(
             listOf(
-                BandBreakdown(percentage = 0.2, amount = 624.85),
-                BandBreakdown(
-                    percentage = 0.4,
-                    amount = 2666.6666666666665
-                )
-            ), response.monthly.taxBreakdown
-        )
+                BandBreakdown(percentage = 0.2, amount = 624.85), BandBreakdown(
+                    percentage = 0.4, amount = 2666.6666666666665)), response.monthly.taxBreakdown)
 
         assertEquals(3038.3230769230768, response.fourWeekly.taxToPay)
         assertEquals(489.5507692307692, response.fourWeekly.employeesNI)
@@ -187,15 +159,8 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 576.7846153846154
-                ),
-                BandBreakdown(
-                    percentage = 0.4,
-                    amount = 2461.5384615384614
-                )
-            ), response.fourWeekly.taxBreakdown
-        )
+                    percentage = 0.2, amount = 576.7846153846154), BandBreakdown(
+                    percentage = 0.4, amount = 2461.5384615384614)), response.fourWeekly.taxBreakdown)
 
         assertEquals(759.5807692307692, response.weekly.taxToPay)
         assertEquals(122.3876923076923, response.weekly.employeesNI)
@@ -207,22 +172,15 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 144.19615384615385
-                ),
-                BandBreakdown(
-                    percentage = 0.4,
-                    amount = 615.3846153846154
-                )
-            ), response.weekly.taxBreakdown
-        )
+                    percentage = 0.2, amount = 144.19615384615385), BandBreakdown(
+                    percentage = 0.4, amount = 615.3846153846154)), response.weekly.taxBreakdown)
     }
 
     @Test
     fun `Check Full Calculator Response Scotland Large Amount`() {
         val taxCode = "S250T"
         val wages = 10000.00
-        val response = Calculator(taxCode, wages, payPeriod = MONTHLY).run()
+        val response = TaxCalculator(taxCode, wages, payPeriod = MONTHLY).run()
 
         assertEquals(SCOTLAND, response.country)
         assertEquals(false, response.isKCode)
@@ -243,9 +201,7 @@ class CalculatorResponseTests {
                 BandBreakdown(percentage = 0.19, amount = 387.60),
                 BandBreakdown(percentage = 0.2, amount = 2079.0),
                 BandBreakdown(percentage = 0.21, amount = 3882.06),
-                BandBreakdown(percentage = 0.41, amount = 35493.70)
-            ), response.yearly.taxBreakdown
-        )
+                BandBreakdown(percentage = 0.41, amount = 35493.70)), response.yearly.taxBreakdown)
 
         assertEquals(3486.8633333333332, response.monthly.taxToPay)
         assertEquals(530.3466666666667, response.monthly.employeesNI)
@@ -257,17 +213,11 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.19,
-                    amount = 32.300000000000004
-                ),
+                    percentage = 0.19, amount = 32.300000000000004),
                 BandBreakdown(percentage = 0.2, amount = 173.25),
                 BandBreakdown(percentage = 0.21, amount = 323.505),
                 BandBreakdown(
-                    percentage = 0.41,
-                    amount = 2957.808333333333
-                )
-            ), response.monthly.taxBreakdown
-        )
+                    percentage = 0.41, amount = 2957.808333333333)), response.monthly.taxBreakdown)
 
         assertEquals(3218.643076923077, response.fourWeekly.taxToPay)
         assertEquals(489.5507692307692, response.fourWeekly.employeesNI)
@@ -279,20 +229,12 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.19,
-                    amount = 29.815384615384616
-                ),
+                    percentage = 0.19, amount = 29.815384615384616),
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 159.92307692307693
-                ),
+                    percentage = 0.2, amount = 159.92307692307693),
                 BandBreakdown(percentage = 0.21, amount = 298.62),
                 BandBreakdown(
-                    percentage = 0.41,
-                    amount = 2730.2846153846153
-                )
-            ), response.fourWeekly.taxBreakdown
-        )
+                    percentage = 0.41, amount = 2730.2846153846153)), response.fourWeekly.taxBreakdown)
 
         assertEquals(804.6607692307692, response.weekly.taxToPay)
         assertEquals(122.3876923076923, response.weekly.employeesNI)
@@ -304,61 +246,45 @@ class CalculatorResponseTests {
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.19,
-                    amount = 7.453846153846154
-                ),
+                    percentage = 0.19, amount = 7.453846153846154),
                 BandBreakdown(
-                    percentage = 0.2,
-                    amount = 39.98076923076923
-                ),
+                    percentage = 0.2, amount = 39.98076923076923),
                 BandBreakdown(percentage = 0.21, amount = 74.655),
                 BandBreakdown(
-                    percentage = 0.41,
-                    amount = 682.5711538461538
-                )
-            ), response.weekly.taxBreakdown
-        )
+                    percentage = 0.41, amount = 682.5711538461538)), response.weekly.taxBreakdown)
     }
 
     @Test
     fun `Test code SD2`() {
         val taxCode = "SD2"
         val wages = 130000.00
-        val response = Calculator(taxCode, wages, payPeriod = YEARLY).run()
+        val response = TaxCalculator(taxCode, wages, payPeriod = YEARLY).run()
 
         assertEquals(66364.16, response.yearly.totalDeductions)
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.46,
-                    amount = 59800.00
-                )
-            ), response.yearly.taxBreakdown
-        )
+                    percentage = 0.46, amount = 59800.00)), response.yearly.taxBreakdown)
     }
 
     @Test
     fun `Test code NT`() {
         val taxCode = "NT"
         val wages = 130000.00
-        val response = Calculator(taxCode, wages, payPeriod = YEARLY).run()
+        val response = TaxCalculator(taxCode, wages, payPeriod = YEARLY).run()
         assertEquals(false, response.yearly.maxTaxAmountExceeded)
         assertEquals(6564.16, response.yearly.totalDeductions)
         assertEquals(
             listOf(
                 BandBreakdown(
-                    percentage = 0.00,
-                    amount = 0.00
-                )
-            ), response.yearly.taxBreakdown
-        )
+                    percentage = 0.00, amount = 0.00)), response.yearly.taxBreakdown)
     }
 
     @Test
     fun `Check K9999 (Ensure HMRC does not tax you more than 50%)`() {
         val taxCode = "K9999"
         val wages = 400.00
-        val response = Calculator(taxCode, wages, payPeriod = PayPeriod.WEEKLY).run()
+        val response = TaxCalculator(taxCode, wages, payPeriod = PayPeriod.WEEKLY).run()
 
         assertEquals(ENGLAND, response.country)
         assertEquals(true, response.isKCode)
@@ -382,7 +308,7 @@ class CalculatorResponseTests {
         val taxCode = "S1250L"
         val wages = 500.0
         val days = 5.0
-        val response = Calculator(taxCode, wages, payPeriod = PayPeriod.DAILY, howManyAWeek = days).run()
+        val response = TaxCalculator(taxCode, wages, payPeriod = PayPeriod.DAILY, howManyAWeek = days).run()
 
         assertEquals(SCOTLAND, response.country)
         assertEquals(false, response.isKCode)
@@ -400,8 +326,25 @@ class CalculatorResponseTests {
         assertEquals(130000.0, response.yearly.wages)
         assertEquals(null, response.yearly.kCodeAdjustment)
 
-        assertEquals(listOf(BandBreakdown(percentage = 0.19, amount = 387.6), BandBreakdown(percentage = 0.2, amount = 2079.0), BandBreakdown(percentage = 0.21, amount = 3882.06), BandBreakdown(percentage = 0.41, amount = 35493.7)), response.yearly.taxBreakdown)
-        assertEquals(listOf(BandBreakdown(percentage = 0.19, amount = 32.300000000000004), BandBreakdown(percentage = 0.2, amount = 173.25), BandBreakdown(percentage = 0.21, amount = 323.505), BandBreakdown(percentage = 0.41, amount = 2957.808333333333)), response.monthly.taxBreakdown)
-        assertEquals(listOf(BandBreakdown(percentage = 0.19, amount = 29.815384615384616), BandBreakdown(percentage = 0.2, amount = 159.92307692307693), BandBreakdown(percentage = 0.21, amount = 298.62), BandBreakdown(percentage = 0.41, amount = 2730.2846153846153)), response.fourWeekly.taxBreakdown)
+        assertEquals(
+            listOf(
+                BandBreakdown(percentage = 0.19, amount = 387.6),
+                BandBreakdown(percentage = 0.2, amount = 2079.0),
+                BandBreakdown(percentage = 0.21, amount = 3882.06),
+                BandBreakdown(percentage = 0.41, amount = 35493.7)), response.yearly.taxBreakdown)
+        assertEquals(
+            listOf(
+                BandBreakdown(percentage = 0.19, amount = 32.300000000000004),
+                BandBreakdown(percentage = 0.2, amount = 173.25),
+                BandBreakdown(percentage = 0.21, amount = 323.505),
+                BandBreakdown(percentage = 0.41, amount = 2957.808333333333)),
+            response.monthly.taxBreakdown)
+        assertEquals(
+            listOf(
+                BandBreakdown(percentage = 0.19, amount = 29.815384615384616),
+                BandBreakdown(percentage = 0.2, amount = 159.92307692307693),
+                BandBreakdown(percentage = 0.21, amount = 298.62),
+                BandBreakdown(percentage = 0.41, amount = 2730.2846153846153)),
+            response.fourWeekly.taxBreakdown)
     }
 }
