@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils
+package uk.gov.hmrc.helptosavecalculator.utils
 
 import com.soywiz.klock.DateTime
 

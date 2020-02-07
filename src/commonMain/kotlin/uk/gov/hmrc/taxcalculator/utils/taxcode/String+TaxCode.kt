@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.taxcode
+package uk.gov.hmrc.helptosavecalculator.utils.taxcode
 
-import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
-import uk.gov.hmrc.calculator.model.Country
-import uk.gov.hmrc.calculator.model.taxcodes.NTCode
-import uk.gov.hmrc.calculator.model.taxcodes.TaxCode
-import uk.gov.hmrc.calculator.utils.toCountry
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxCodeException
+import uk.gov.hmrc.helptosavecalculator.model.Country
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.NTCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.TaxCode
+import uk.gov.hmrc.helptosavecalculator.utils.toCountry
 
 internal fun String.toTaxCode(): TaxCode {
     if (isBlank()) throw InvalidTaxCodeException("Tax code cannot be empty")

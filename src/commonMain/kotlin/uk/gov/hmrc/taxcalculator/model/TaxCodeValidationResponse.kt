@@ -13,6 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model
+package uk.gov.hmrc.helptosavecalculator.model
 
 data class TaxCodeValidationResponse(val isValid: Boolean, val errorType: ValidationError? = null)

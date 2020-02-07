@@ -19,20 +19,20 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
-import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
-import uk.gov.hmrc.calculator.model.Country.WALES
-import uk.gov.hmrc.calculator.model.taxcodes.C0T
-import uk.gov.hmrc.calculator.model.taxcodes.CBR
-import uk.gov.hmrc.calculator.model.taxcodes.CD0
-import uk.gov.hmrc.calculator.model.taxcodes.CD1
-import uk.gov.hmrc.calculator.model.taxcodes.CKCode
-import uk.gov.hmrc.calculator.model.taxcodes.CLCode
-import uk.gov.hmrc.calculator.model.taxcodes.CTCode
-import uk.gov.hmrc.calculator.model.taxcodes.WelshEmergencyCode
-import uk.gov.hmrc.calculator.model.taxcodes.WelshMCode
-import uk.gov.hmrc.calculator.model.taxcodes.WelshNCode
-import uk.gov.hmrc.calculator.model.taxcodes.WelshTaxCode
-import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxCodeException
+import uk.gov.hmrc.helptosavecalculator.model.Country.WALES
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.C0T
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.CBR
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.CD0
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.CD1
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.CKCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.CLCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.CTCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.WelshEmergencyCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.WelshMCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.WelshNCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.WelshTaxCode
+import uk.gov.hmrc.helptosavecalculator.utils.taxcode.toTaxCode
 
 class StringWelshTaxCodeTests {
 

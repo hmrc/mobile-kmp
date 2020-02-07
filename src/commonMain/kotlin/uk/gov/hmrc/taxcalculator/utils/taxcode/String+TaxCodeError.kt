@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.taxcode
+package uk.gov.hmrc.helptosavecalculator.utils.taxcode
 
-import uk.gov.hmrc.calculator.model.TaxCodeValidationResponse
-import uk.gov.hmrc.calculator.model.ValidationError
+import uk.gov.hmrc.helptosavecalculator.model.TaxCodeValidationResponse
+import uk.gov.hmrc.helptosavecalculator.model.ValidationError
 
 internal fun String.invalidTaxCodeErrorGeneration(): TaxCodeValidationResponse {
     return if (!this.replace("[^\\d.]".toRegex(), "").matches("^[0-9]{1,4}".toRegex()))

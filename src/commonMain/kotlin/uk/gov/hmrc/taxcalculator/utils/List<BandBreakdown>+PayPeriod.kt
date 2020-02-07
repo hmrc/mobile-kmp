@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils
+package uk.gov.hmrc.helptosavecalculator.utils
 
-import uk.gov.hmrc.calculator.model.BandBreakdown
-import uk.gov.hmrc.calculator.model.PayPeriod
+import uk.gov.hmrc.helptosavecalculator.model.BandBreakdown
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod
 
 internal fun List<BandBreakdown>.convertListOfBandBreakdownForPayPeriod(payPeriod: PayPeriod): List<BandBreakdown> =
     this.map { bandBreakdown ->

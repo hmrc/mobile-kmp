@@ -18,11 +18,11 @@ package uk.gov.hmrc.taxcalculator
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import uk.gov.hmrc.calculator.TaxCalculator
-import uk.gov.hmrc.calculator.exception.InvalidHoursException
-import uk.gov.hmrc.calculator.exception.InvalidWagesException
-import uk.gov.hmrc.calculator.model.PayPeriod.HOURLY
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.TaxCalculator
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidHoursException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidWagesException
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.HOURLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
 
 class CalculatorTests {
 

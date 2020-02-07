@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils
+package uk.gov.hmrc.helptosavecalculator.utils
 
-import uk.gov.hmrc.calculator.model.Country
-import uk.gov.hmrc.calculator.model.Country.ENGLAND
-import uk.gov.hmrc.calculator.model.Country.NONE
-import uk.gov.hmrc.calculator.model.Country.SCOTLAND
-import uk.gov.hmrc.calculator.model.Country.WALES
+import uk.gov.hmrc.helptosavecalculator.model.Country
+import uk.gov.hmrc.helptosavecalculator.model.Country.ENGLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.NONE
+import uk.gov.hmrc.helptosavecalculator.model.Country.SCOTLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.WALES
 
 internal fun String.toCountry(): Country {
     return when (this) {

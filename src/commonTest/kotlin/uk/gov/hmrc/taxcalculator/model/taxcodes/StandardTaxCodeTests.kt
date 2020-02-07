@@ -17,13 +17,13 @@ package uk.gov.hmrc.taxcalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.TaxCalculator
-import uk.gov.hmrc.calculator.model.CalculatorResponse
-import uk.gov.hmrc.calculator.model.PayPeriod.FOUR_WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.HOURLY
-import uk.gov.hmrc.calculator.model.PayPeriod.MONTHLY
-import uk.gov.hmrc.calculator.model.PayPeriod.WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.TaxCalculator
+import uk.gov.hmrc.helptosavecalculator.model.CalculatorResponse
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.FOUR_WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.HOURLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.MONTHLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
 
 class StandardTaxCodeTestsYearly {
 

@@ -13,45 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator
+package uk.gov.hmrc.helptosavecalculator
 
 import kotlin.jvm.JvmOverloads
-import uk.gov.hmrc.calculator.annotations.Throws
-import uk.gov.hmrc.calculator.exception.InvalidHoursException
-import uk.gov.hmrc.calculator.exception.InvalidPayPeriodException
-import uk.gov.hmrc.calculator.exception.InvalidTaxBandException
-import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
-import uk.gov.hmrc.calculator.exception.InvalidTaxYearException
-import uk.gov.hmrc.calculator.exception.InvalidWagesException
-import uk.gov.hmrc.calculator.model.BandBreakdown
-import uk.gov.hmrc.calculator.model.CalculatorResponse
-import uk.gov.hmrc.calculator.model.CalculatorResponsePayPeriod
-import uk.gov.hmrc.calculator.model.Country
-import uk.gov.hmrc.calculator.model.Country.ENGLAND
-import uk.gov.hmrc.calculator.model.PayPeriod
-import uk.gov.hmrc.calculator.model.PayPeriod.FOUR_WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.MONTHLY
-import uk.gov.hmrc.calculator.model.PayPeriod.WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
-import uk.gov.hmrc.calculator.model.bands.Band
-import uk.gov.hmrc.calculator.model.bands.EmployeeNIBands
-import uk.gov.hmrc.calculator.model.bands.EmployerNIBands
-import uk.gov.hmrc.calculator.model.bands.TaxBand
-import uk.gov.hmrc.calculator.model.bands.TaxBands
-import uk.gov.hmrc.calculator.model.taxcodes.AdjustedTaxFreeTCode
-import uk.gov.hmrc.calculator.model.taxcodes.EmergencyTaxCode
-import uk.gov.hmrc.calculator.model.taxcodes.KTaxCode
-import uk.gov.hmrc.calculator.model.taxcodes.MarriageTaxCodes
-import uk.gov.hmrc.calculator.model.taxcodes.NoTaxTaxCode
-import uk.gov.hmrc.calculator.model.taxcodes.SingleBandTax
-import uk.gov.hmrc.calculator.model.taxcodes.StandardTaxCode
-import uk.gov.hmrc.calculator.model.taxcodes.TaxCode
-import uk.gov.hmrc.calculator.utils.TaxYear
-import uk.gov.hmrc.calculator.utils.convertAmountFromYearlyToPayPeriod
-import uk.gov.hmrc.calculator.utils.convertListOfBandBreakdownForPayPeriod
-import uk.gov.hmrc.calculator.utils.convertWageToYearly
-import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
-import uk.gov.hmrc.calculator.utils.validation.WageValidator
+import uk.gov.hmrc.helptosavecalculator.annotations.Throws
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidHoursException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidPayPeriodException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxBandException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxCodeException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxYearException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidWagesException
+import uk.gov.hmrc.helptosavecalculator.model.BandBreakdown
+import uk.gov.hmrc.helptosavecalculator.model.CalculatorResponse
+import uk.gov.hmrc.helptosavecalculator.model.CalculatorResponsePayPeriod
+import uk.gov.hmrc.helptosavecalculator.model.Country
+import uk.gov.hmrc.helptosavecalculator.model.Country.ENGLAND
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.FOUR_WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.MONTHLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.model.bands.Band
+import uk.gov.hmrc.helptosavecalculator.model.bands.EmployeeNIBands
+import uk.gov.hmrc.helptosavecalculator.model.bands.EmployerNIBands
+import uk.gov.hmrc.helptosavecalculator.model.bands.TaxBand
+import uk.gov.hmrc.helptosavecalculator.model.bands.TaxBands
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.AdjustedTaxFreeTCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EmergencyTaxCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.KTaxCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.MarriageTaxCodes
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.NoTaxTaxCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.SingleBandTax
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.StandardTaxCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.TaxCode
+import uk.gov.hmrc.helptosavecalculator.utils.TaxYear
+import uk.gov.hmrc.helptosavecalculator.utils.convertAmountFromYearlyToPayPeriod
+import uk.gov.hmrc.helptosavecalculator.utils.convertListOfBandBreakdownForPayPeriod
+import uk.gov.hmrc.helptosavecalculator.utils.convertWageToYearly
+import uk.gov.hmrc.helptosavecalculator.utils.taxcode.toTaxCode
+import uk.gov.hmrc.helptosavecalculator.utils.validation.WageValidator
 
 class TaxCalculator @JvmOverloads constructor(
     private val taxCode: String,
@@ -65,7 +65,7 @@ class TaxCalculator @JvmOverloads constructor(
     private val bandBreakdown: MutableList<BandBreakdown> = mutableListOf()
 
     @Throws(InvalidTaxCodeException::class, InvalidTaxYearException::class, InvalidWagesException::class,
-        InvalidPayPeriodException::class, InvalidHoursException::class, InvalidTaxBandException::class)
+            InvalidPayPeriodException::class, InvalidHoursException::class, InvalidTaxBandException::class)
     fun run(): CalculatorResponse {
         if (!WageValidator.isAboveMinimumWages(wages) || !WageValidator.isBelowMaximumWages(wages)) {
             throw InvalidWagesException("Wages must be between 0 and 9999999.99")

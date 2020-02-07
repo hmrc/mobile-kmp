@@ -16,73 +16,88 @@
 package uk.gov.hmrc.helptosavecalculator
 
 import com.soywiz.klock.DateTime
+import uk.gov.hmrc.helptosavecalculator.annotations.Throws
 import uk.gov.hmrc.helptosavecalculator.config.HtSSchemeConfig
 import uk.gov.hmrc.helptosavecalculator.exceptions.InvalidRegularPaymentException
-import uk.gov.hmrc.helptosavecalculator.models.CalculatorResponse
+import uk.gov.hmrc.helptosavecalculator.models.HtSCalculatorResponse
 import uk.gov.hmrc.helptosavecalculator.models.MonthlyBreakdown
 import uk.gov.hmrc.helptosavecalculator.utils.monthsSince
 import uk.gov.hmrc.helptosavecalculator.validation.RegularPaymentValidators
 
 object HtSCalculator : HtSSchemeConfig() {
 
-    fun run(regularPayment: Int): CalculatorResponse {
+    @Throws(
+        InvalidRegularPaymentException::class)
+    fun run(regularPayment: Double): HtSCalculatorResponse {
         return calculate(regularPayment)
     }
 
+    @Throws(
+        InvalidRegularPaymentException::class)
     fun run(
-        regularPayment: Int,
-        currentBalance: Int,
+        regularPayment: Double,
+        currentBalance: Double,
         currentFirstPeriodBonus: Double,
         currentSecondPeriodBonus: Double,
         accountStartDate: DateTime
-    ): CalculatorResponse {
+    ): HtSCalculatorResponse {
         return calculate(
             regularPayment, currentBalance, currentFirstPeriodBonus, currentSecondPeriodBonus, accountStartDate)
     }
 
     private fun calculate(
-        regularPayment: Int,
-        currentBalance: Int? = null,
-        currentFirstPeriodBonus: Double? = null,
-        currentSecondPeriodBonus: Double? = null,
+        regularPayment: Double,
+        currentBalance: Double? = null,
+        currentPeriod1Bonus: Double? = null,
+        currentPeriod2Bonus: Double? = null,
         accountStartDate: DateTime? = null
-    ): CalculatorResponse {
+    ): HtSCalculatorResponse {
         val listOfMonths: MutableList<MonthlyBreakdown> = mutableListOf()
         var currentMonth: Int = accountStartDate?.monthsSince()?.plus(1) ?: 1
-        var balance: Int = currentBalance ?: 0
-        var endOfFirstPeriodBonus: Double = currentFirstPeriodBonus ?: 0.0
-        var endOfSecondPeriodBonus: Double = currentSecondPeriodBonus ?: 0.0
+        var endOfSchemeSavings: Double = currentBalance ?: 0.0
+        var endOfPeriod1Savings: Double = currentBalance ?: 0.0
+        var endOfPeriod2Savings: Double = currentBalance ?: 0.0
+        var endOfPeriod1Bonus: Double = currentPeriod1Bonus ?: 0.0
+        var endOfPeriod2Bonus: Double = currentPeriod2Bonus ?: 0.0
 
         validateUserInput(regularPayment)
 
         while (currentMonth <= endOfSecondBonusPeriod) {
-            balance += regularPayment
+            endOfSchemeSavings += regularPayment
             when (currentMonth) {
                 in startOfFirstBonusPeriod..endOfFirstBonusPeriod -> {
-                    endOfFirstPeriodBonus += (regularPayment / 2)
+                    endOfPeriod1Bonus += (regularPayment / 2)
+                    if (currentMonth == endOfFirstBonusPeriod) {
+                        endOfPeriod1Savings = endOfSchemeSavings
+                    }
                 }
                 in startOfSecondBonusPeriod..endOfSecondBonusPeriod -> {
-                    endOfSecondPeriodBonus += (regularPayment / 2)
+                    endOfPeriod2Bonus += (regularPayment / 2)
+                    if (currentMonth == endOfSecondBonusPeriod) {
+                        endOfPeriod2Savings = endOfSchemeSavings - endOfPeriod1Savings
+                    }
                 }
                 else -> throw IllegalStateException("The scheme has exceeded 1 to 48 months")
             }
             listOfMonths.add(
                 MonthlyBreakdown(
                     monthNumber = currentMonth,
-                    balance = balance,
-                    secondYearBonus = endOfFirstPeriodBonus,
-                    fourthYearBonus = endOfSecondPeriodBonus))
+                    savingsToDate = endOfSchemeSavings,
+                    period1Bonus = endOfPeriod1Bonus,
+                    period2Bonus = endOfPeriod2Bonus))
             currentMonth++
         }
-        return CalculatorResponse(
+        return HtSCalculatorResponse(
             monthlyPayments = regularPayment,
-            finalBalance = balance,
-            finalSecondYearBonus = endOfFirstPeriodBonus,
-            finalFourthYearBonus = endOfSecondPeriodBonus,
-            monthlyBreakdown = listOfMonths)
+            monthlyBreakdown = listOfMonths,
+            endOfSchemeSavings = endOfSchemeSavings,
+            endOfPeriod1Bonus = endOfPeriod1Bonus,
+            endOfPeriod1Savings = endOfPeriod1Savings,
+            endOfPeriod2Bonus = endOfPeriod2Bonus,
+            endOfPeriod2Savings = endOfPeriod2Savings)
     }
 
-    private fun validateUserInput(regularPayment: Int) {
+    private fun validateUserInput(regularPayment: Double) {
         if (!RegularPaymentValidators.isValidRegularPayments(regularPayment)) {
             throw InvalidRegularPaymentException(regularPayment)
         }

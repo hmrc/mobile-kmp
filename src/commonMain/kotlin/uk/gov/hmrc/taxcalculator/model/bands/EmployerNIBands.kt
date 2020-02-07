@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.bands
+package uk.gov.hmrc.helptosavecalculator.model.bands
 
-import uk.gov.hmrc.calculator.exception.InvalidTaxYearException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxYearException
 
 internal class EmployerNIBands(taxYear: Int) {
 

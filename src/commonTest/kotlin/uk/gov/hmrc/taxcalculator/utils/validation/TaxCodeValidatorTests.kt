@@ -19,8 +19,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import uk.gov.hmrc.calculator.model.ValidationError
-import uk.gov.hmrc.calculator.utils.validation.TaxCodeValidator
+import uk.gov.hmrc.helptosavecalculator.model.ValidationError
+import uk.gov.hmrc.helptosavecalculator.utils.validation.TaxCodeValidator
 
 class TaxCodeValidatorTests {
     @Test

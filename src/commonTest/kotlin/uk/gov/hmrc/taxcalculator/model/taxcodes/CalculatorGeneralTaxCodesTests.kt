@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.taxcodes
+package uk.gov.hmrc.helptosavecalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.TaxCalculator
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.TaxCalculator
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
 
 class GeneralTaxCodeTests {
 

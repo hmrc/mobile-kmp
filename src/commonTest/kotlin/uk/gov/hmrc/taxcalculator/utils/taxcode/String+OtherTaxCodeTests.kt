@@ -19,10 +19,10 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
-import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
-import uk.gov.hmrc.calculator.model.Country.NONE
-import uk.gov.hmrc.calculator.model.taxcodes.NoTaxTaxCode
-import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxCodeException
+import uk.gov.hmrc.helptosavecalculator.model.Country.NONE
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.NoTaxTaxCode
+import uk.gov.hmrc.helptosavecalculator.utils.taxcode.toTaxCode
 
 class StringOtherTaxCodeTests {
 

@@ -17,8 +17,8 @@ package uk.gov.hmrc.taxcalculator.model.taxcodes
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.TaxCalculator
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.TaxCalculator
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
 
 class KTaxCodesTests {
 

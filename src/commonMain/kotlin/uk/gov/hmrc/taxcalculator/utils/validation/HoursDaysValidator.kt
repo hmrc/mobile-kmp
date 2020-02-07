@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.validation
+package uk.gov.hmrc.helptosavecalculator.utils.validation
 
 object HoursDaysValidator {
 

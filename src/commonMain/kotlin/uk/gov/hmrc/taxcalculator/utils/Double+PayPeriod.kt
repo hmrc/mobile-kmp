@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils
+package uk.gov.hmrc.helptosavecalculator.utils
 
-import uk.gov.hmrc.calculator.exception.InvalidDaysException
-import uk.gov.hmrc.calculator.exception.InvalidHoursException
-import uk.gov.hmrc.calculator.exception.InvalidPayPeriodException
-import uk.gov.hmrc.calculator.model.PayPeriod
-import uk.gov.hmrc.calculator.model.PayPeriod.DAILY
-import uk.gov.hmrc.calculator.model.PayPeriod.FOUR_WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.HOURLY
-import uk.gov.hmrc.calculator.model.PayPeriod.MONTHLY
-import uk.gov.hmrc.calculator.model.PayPeriod.WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
-import uk.gov.hmrc.calculator.utils.validation.HoursDaysValidator
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidDaysException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidHoursException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidPayPeriodException
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.DAILY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.FOUR_WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.HOURLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.MONTHLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.utils.validation.HoursDaysValidator
 
 internal fun Double.convertWageToYearly(
     payPeriod: PayPeriod,

@@ -19,21 +19,21 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
-import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
-import uk.gov.hmrc.calculator.model.Country.ENGLAND
-import uk.gov.hmrc.calculator.model.taxcodes.BR
-import uk.gov.hmrc.calculator.model.taxcodes.D0
-import uk.gov.hmrc.calculator.model.taxcodes.D1
-import uk.gov.hmrc.calculator.model.taxcodes.EmergencyTaxCode
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishEmergencyCode
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishMCode
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishNCode
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishTaxCode
-import uk.gov.hmrc.calculator.model.taxcodes.KCode
-import uk.gov.hmrc.calculator.model.taxcodes.LCode
-import uk.gov.hmrc.calculator.model.taxcodes.TCode
-import uk.gov.hmrc.calculator.model.taxcodes.ZeroT
-import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxCodeException
+import uk.gov.hmrc.helptosavecalculator.model.Country.ENGLAND
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.BR
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.D0
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.D1
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EmergencyTaxCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishEmergencyCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishMCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishNCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishTaxCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.KCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.LCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.TCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.ZeroT
+import uk.gov.hmrc.helptosavecalculator.utils.taxcode.toTaxCode
 
 class StringEnglishTaxCodeTests {
     @Test

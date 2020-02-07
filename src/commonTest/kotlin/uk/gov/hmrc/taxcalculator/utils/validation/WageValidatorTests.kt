@@ -18,7 +18,7 @@ package uk.gov.hmrc.taxcalculator.utils.validation
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import uk.gov.hmrc.calculator.utils.validation.WageValidator
+import uk.gov.hmrc.helptosavecalculator.utils.validation.WageValidator
 
 class WageValidatorTests {
     @Test

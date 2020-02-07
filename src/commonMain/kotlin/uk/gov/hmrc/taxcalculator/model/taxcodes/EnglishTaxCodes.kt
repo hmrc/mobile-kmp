@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.taxcodes
+package uk.gov.hmrc.helptosavecalculator.model.taxcodes
 
-import uk.gov.hmrc.calculator.model.Country
-import uk.gov.hmrc.calculator.model.Country.ENGLAND
-import uk.gov.hmrc.calculator.model.Country.NONE
+import uk.gov.hmrc.helptosavecalculator.model.Country
+import uk.gov.hmrc.helptosavecalculator.model.Country.ENGLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.NONE
 
 internal interface EnglishTaxCode : TaxCode {
     override val country: Country

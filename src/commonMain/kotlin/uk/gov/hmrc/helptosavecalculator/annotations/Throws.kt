@@ -13,8 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.helptosavecalculator.model
+package uk.gov.hmrc.helptosavecalculator.annotations
 
-enum class ValidationError {
-    WrongTaxCodeNumber, WrongTaxCodePrefix, WrongTaxCodeSuffix, Other
-}
+import kotlin.reflect.KClass
+
+@UseExperimental(ExperimentalMultiplatform::class)
+@OptionalExpectation
+@Target(AnnotationTarget.FUNCTION, AnnotationTarget.CONSTRUCTOR)
+@Retention(AnnotationRetention.SOURCE)
+expect annotation class Throws(vararg val exceptionClasses: KClass<out Throwable>)

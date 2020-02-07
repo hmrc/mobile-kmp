@@ -17,14 +17,14 @@ package uk.gov.hmrc.taxcalculator.model
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.TaxCalculator
-import uk.gov.hmrc.calculator.model.BandBreakdown
-import uk.gov.hmrc.calculator.model.CalculatorResponsePayPeriod
-import uk.gov.hmrc.calculator.model.Country.ENGLAND
-import uk.gov.hmrc.calculator.model.Country.SCOTLAND
-import uk.gov.hmrc.calculator.model.PayPeriod
-import uk.gov.hmrc.calculator.model.PayPeriod.MONTHLY
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.TaxCalculator
+import uk.gov.hmrc.helptosavecalculator.model.BandBreakdown
+import uk.gov.hmrc.helptosavecalculator.model.CalculatorResponsePayPeriod
+import uk.gov.hmrc.helptosavecalculator.model.Country.ENGLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.SCOTLAND
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.MONTHLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
 
 class CalculatorResponseTests {
 

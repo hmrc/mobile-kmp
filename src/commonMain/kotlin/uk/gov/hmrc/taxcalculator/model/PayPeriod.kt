@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model
+package uk.gov.hmrc.helptosavecalculator.model
 
 enum class PayPeriod {
     HOURLY, DAILY, WEEKLY, FOUR_WEEKLY, MONTHLY, YEARLY

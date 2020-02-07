@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.exception
+package uk.gov.hmrc.helptosavecalculator.exception
 
 class InvalidTaxCodeException(message: String) : Exception(message)
 

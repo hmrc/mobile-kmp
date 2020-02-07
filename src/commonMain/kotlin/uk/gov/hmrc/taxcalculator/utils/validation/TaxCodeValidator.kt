@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.validation
+package uk.gov.hmrc.helptosavecalculator.utils.validation
 
-import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
-import uk.gov.hmrc.calculator.model.TaxCodeValidationResponse
-import uk.gov.hmrc.calculator.utils.taxcode.invalidTaxCodeErrorGeneration
-import uk.gov.hmrc.calculator.utils.taxcode.toTaxCode
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxCodeException
+import uk.gov.hmrc.helptosavecalculator.model.TaxCodeValidationResponse
+import uk.gov.hmrc.helptosavecalculator.utils.taxcode.invalidTaxCodeErrorGeneration
+import uk.gov.hmrc.helptosavecalculator.utils.taxcode.toTaxCode
 
 object TaxCodeValidator {
     fun isValidTaxCode(taxCode: String): TaxCodeValidationResponse {

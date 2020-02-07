@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.utils.taxcode
+package uk.gov.hmrc.helptosavecalculator.utils.taxcode
 
-import uk.gov.hmrc.calculator.exception.InvalidTaxCodeException
-import uk.gov.hmrc.calculator.model.taxcodes.BR
-import uk.gov.hmrc.calculator.model.taxcodes.D0
-import uk.gov.hmrc.calculator.model.taxcodes.D1
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishEmergencyCode
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishMCode
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishNCode
-import uk.gov.hmrc.calculator.model.taxcodes.EnglishTaxCode
-import uk.gov.hmrc.calculator.model.taxcodes.KCode
-import uk.gov.hmrc.calculator.model.taxcodes.LCode
-import uk.gov.hmrc.calculator.model.taxcodes.TCode
-import uk.gov.hmrc.calculator.model.taxcodes.ZeroT
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxCodeException
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.BR
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.D0
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.D1
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishEmergencyCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishMCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishNCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.EnglishTaxCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.KCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.LCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.TCode
+import uk.gov.hmrc.helptosavecalculator.model.taxcodes.ZeroT
 
 internal fun String.matchEnglishTaxCode(): EnglishTaxCode {
     return when (this) {

@@ -18,11 +18,11 @@ package uk.gov.hmrc.taxcalculator.model.bands
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import uk.gov.hmrc.calculator.exception.InvalidTaxYearException
-import uk.gov.hmrc.calculator.model.Country.ENGLAND
-import uk.gov.hmrc.calculator.model.Country.SCOTLAND
-import uk.gov.hmrc.calculator.model.Country.WALES
-import uk.gov.hmrc.calculator.model.bands.TaxBands
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxYearException
+import uk.gov.hmrc.helptosavecalculator.model.Country.ENGLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.SCOTLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.WALES
+import uk.gov.hmrc.helptosavecalculator.model.bands.TaxBands
 
 class TaxBandsTests {
 

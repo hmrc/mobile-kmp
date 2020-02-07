@@ -18,17 +18,17 @@ package uk.gov.hmrc.taxcalculator.utils
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import uk.gov.hmrc.calculator.exception.InvalidDaysException
-import uk.gov.hmrc.calculator.exception.InvalidHoursException
-import uk.gov.hmrc.calculator.exception.InvalidPayPeriodException
-import uk.gov.hmrc.calculator.model.PayPeriod.DAILY
-import uk.gov.hmrc.calculator.model.PayPeriod.FOUR_WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.HOURLY
-import uk.gov.hmrc.calculator.model.PayPeriod.MONTHLY
-import uk.gov.hmrc.calculator.model.PayPeriod.WEEKLY
-import uk.gov.hmrc.calculator.model.PayPeriod.YEARLY
-import uk.gov.hmrc.calculator.utils.convertAmountFromYearlyToPayPeriod
-import uk.gov.hmrc.calculator.utils.convertWageToYearly
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidDaysException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidHoursException
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidPayPeriodException
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.DAILY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.FOUR_WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.HOURLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.MONTHLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.WEEKLY
+import uk.gov.hmrc.helptosavecalculator.model.PayPeriod.YEARLY
+import uk.gov.hmrc.helptosavecalculator.utils.convertAmountFromYearlyToPayPeriod
+import uk.gov.hmrc.helptosavecalculator.utils.convertWageToYearly
 
 class DoublePayPeriodTest {
 

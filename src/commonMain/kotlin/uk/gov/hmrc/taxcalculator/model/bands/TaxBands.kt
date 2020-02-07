@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package uk.gov.hmrc.calculator.model.bands
+package uk.gov.hmrc.helptosavecalculator.model.bands
 
-import uk.gov.hmrc.calculator.exception.InvalidTaxYearException
-import uk.gov.hmrc.calculator.model.Country
-import uk.gov.hmrc.calculator.model.Country.SCOTLAND
-import uk.gov.hmrc.calculator.model.Country.WALES
+import uk.gov.hmrc.helptosavecalculator.exception.InvalidTaxYearException
+import uk.gov.hmrc.helptosavecalculator.model.Country
+import uk.gov.hmrc.helptosavecalculator.model.Country.SCOTLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.WALES
 
 internal class TaxBands(country: Country, taxYear: Int) {
 

@@ -17,11 +17,11 @@ package uk.gov.hmrc.taxcalculator.utils
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import uk.gov.hmrc.calculator.model.Country.ENGLAND
-import uk.gov.hmrc.calculator.model.Country.NONE
-import uk.gov.hmrc.calculator.model.Country.SCOTLAND
-import uk.gov.hmrc.calculator.model.Country.WALES
-import uk.gov.hmrc.calculator.utils.toCountry
+import uk.gov.hmrc.helptosavecalculator.model.Country.ENGLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.NONE
+import uk.gov.hmrc.helptosavecalculator.model.Country.SCOTLAND
+import uk.gov.hmrc.helptosavecalculator.model.Country.WALES
+import uk.gov.hmrc.helptosavecalculator.utils.toCountry
 
 class StringCountryTests {
 
