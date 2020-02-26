@@ -47,13 +47,11 @@ internal fun String.matchOtherScottishTaxCode(): ScottishTaxCode {
         "^S[0-9]{1,4}L".toRegex().matches(this) ->
             SLCode(removePrefix("S").removeSuffix("L").toDouble())
         "^S[0-9]{1,4}[LT]?(W1|M1|X)".toRegex().matches(this) -> {
-            val strippedValue = removePrefix("S").extractDoubleFromEmergencyTaxCode()
+            val strippedValue = extractDoubleFromEmergencyTaxCode()
             ScottishEmergencyCode(strippedValue)
         }
         "S[0-9]{1,4}([MN])".toRegex().matches(this) -> matchScottishMNCode()
-        "SK[0-9]{1,4}".toRegex().matches(this) -> SKCode(
-            removePrefix("SK").toDouble()
-        )
+        "SK[0-9]{1,4}(W1|M1|X)?".toRegex().matches(this) -> SKCode(extractDoubleFromEmergencyTaxCode())
         else -> throw InvalidTaxCodeException("$this is an invalid Scottish tax code")
     }
 }
