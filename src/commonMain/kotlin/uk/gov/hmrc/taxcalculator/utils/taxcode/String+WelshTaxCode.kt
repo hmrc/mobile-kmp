@@ -45,14 +45,11 @@ private fun String.matchOtherWelshTaxCode(): WelshTaxCode {
         "C[0-9]{1,4}L".toRegex().matches(this) ->
             CLCode(removePrefix("C").removeSuffix("L").toDouble())
         "C[0-9]{1,4}[LT]?(W1|M1|X)".toRegex().matches(this) -> {
-            val strippedValue =
-                removePrefix("C").extractDoubleFromEmergencyTaxCode()
+            val strippedValue = extractDoubleFromEmergencyTaxCode()
             WelshEmergencyCode(strippedValue)
         }
         "C[0-9]{1,4}([MN])".toRegex().matches(this) -> matchWelshMNCode()
-        "CK[0-9]{1,4}".toRegex().matches(this) -> CKCode(
-            removePrefix("CK").toDouble()
-        )
+        "CK[0-9]{1,4}(W1|M1|X)?".toRegex().matches(this) -> CKCode(extractDoubleFromEmergencyTaxCode())
         else -> throw InvalidTaxCodeException("$this is an invalid Welsh tax code")
     }
 }

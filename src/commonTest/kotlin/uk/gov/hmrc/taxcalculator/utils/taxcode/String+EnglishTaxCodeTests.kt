@@ -83,6 +83,15 @@ class StringEnglishTaxCodeTests {
     }
 
     @Test
+    fun `England K100X`() {
+        assertTrue("K100X".toTaxCode() is KCode)
+        val taxCode: KCode = "K100X".toTaxCode() as KCode
+        assertEquals(0.0, taxCode.taxFreeAmount)
+        assertEquals(ENGLAND, taxCode.country)
+        assertEquals(1009.0, taxCode.amountToAddToWages)
+    }
+
+    @Test
     fun `ENGLAND Emergency X`() {
         assertTrue("1250X".toTaxCode() is EnglishEmergencyCode)
         assertEquals(12509.0, "1250X".toTaxCode().taxFreeAmount)

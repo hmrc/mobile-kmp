@@ -24,8 +24,17 @@ import uk.gov.hmrc.helptosavecalculator.utils.validation.TaxCodeValidator
 
 class TaxCodeValidatorTests {
     @Test
-    fun `Validate valid tax code`() {
+    fun `Validate valid 1250L tax code`() {
         assertTrue(TaxCodeValidator.isValidTaxCode("1250L").isValid)
+    }
+
+    @Test
+    fun `Validate valid K100 tax code`() {
+        assertTrue(TaxCodeValidator.isValidTaxCode("K100").isValid)
+    }
+    @Test
+    fun `Validate valid K100X tax code`() {
+        assertTrue(TaxCodeValidator.isValidTaxCode("K100X").isValid)
     }
 
     @Test
